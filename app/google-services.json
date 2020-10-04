@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "264132760926",
+    "firebase_url": "https://myappforus.firebaseio.com",
+    "project_id": "myappforus",
+    "storage_bucket": "myappforus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264132760926:android:2808272e32da0e596bebcf",
+        "android_client_info": {
+          "package_name": "com.absyntek.myappforus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264132760926-iacp44grj5j1kh2d9f91m558m3scffho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6A-A7lc6kKJTduWAO2hJDp8jaIkXsgMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264132760926-iacp44grj5j1kh2d9f91m558m3scffho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
