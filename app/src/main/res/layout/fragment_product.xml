@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical" >
+                <ImageView
+                    android:id="@+id/image_top"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:layout_height="200dp"/>
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cheese"
+                    android:textSize="30sp"
+                    android:layout_marginBottom="16dp"
+                    android:textStyle="bold"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Order"/>
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Golosa (DS36) - Delicious seeds présente l'une de ses nouvelles variétés de cette année, une plante issue du croisement Blueberry x Grapefruit, que nous avons ensuite croisé avec Bay 11.
+\n\n
+Ce splendide hybride, développé par notre breeder, fait partie du Projet-11, qui a débuté il y a 4 ans, dans notre laboratoire de test. Vous serez surpris par ses couleurs très sombres qui apparaîtront surtout en fin de floraison, avec un très joli et intense noir.
+\n\n
+En ce qui concerne le goût, Golosa (DS36) (qui peut être traduit en anglais par sucré, gourmand ou tentant) a des notes de fruits amers, tels que le pamplemousse, la mangue verte, avec des touches de menthe poivrée, de café et de réglisse. Ses fleurs dégagent une odeur très agréable, entre le thé vert et le thym, qui vous transportera rapidement vers des contrées boisés, emplies de végétation.
+\n\n
+C'est une plante de taille moyenne avec très peu de ramification et terminera sa floraison aux alentours de 60 jours, vous donnant ainsi une récolte très rapide. C'est une plante très résistante et ne sera donc pas affectée par des champignons ou autres parasites.
+\n\n
+Notre Golosa a des niveaux assez élevés en composants actifs; certains échantillons analysés montrent des valeurs de plus de 26% de THC.
+\n\n
+Odeur: thé vert, thym"
+                    android:textSize="16sp"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

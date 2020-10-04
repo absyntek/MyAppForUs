@@ -1,8 +1,7 @@
-package com.absyntek.myappforus.ui.notifications
+package com.absyntek.myappforus.ui.parametter
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.absyntek.myappforus.base.BaseViewModel
 
 class NotificationsViewModel : BaseViewModel() {

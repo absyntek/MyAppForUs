@@ -29,10 +29,18 @@ class HomeAdapterActual(options: FirestoreRecyclerOptions<Product>) : FirestoreR
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<FragentHomeProductItemBinding>, position: Int, model: Product) {
-        if (model.quantity.toInt() == 0) holder.binding.root.ensureGone()
-        else{
+        val bind = holder.binding
+        bind.progressBarQuantity.progressDrawable.colorFilter =  when (model.quantity.toInt()){
+            in 1 ..19 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.RED, BlendModeCompat.SRC_ATOP) }
+            in 20 ..49 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.YELLOW, BlendModeCompat.SRC_ATOP) }
+            in 50 ..100 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.GREEN, BlendModeCompat.SRC_ATOP) }
+            else -> {
+                holder.binding.root.ensureGone()
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.GREEN, BlendModeCompat.SRC_ATOP)
+            }
+        }
+        if (model.quantity.toInt() != 0){
             holder.binding.root.ensureVisible()
-            val bind = holder.binding
             Glide.with(bind.imgProduct).load(model.pictureUrl).into(bind.imgProduct)
             bind.tvTitle.text = model.name
             if (Date().before(model.timeStart)){
@@ -43,12 +51,6 @@ class HomeAdapterActual(options: FirestoreRecyclerOptions<Product>) : FirestoreR
                 bind.layoutQuantity.ensureVisible()
                 bind.progressBarQuantity.progress = model.quantity.toInt()
 
-                bind.progressBarQuantity.progressDrawable.colorFilter =  when (model.quantity.toInt()){
-                    1 , 19 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.RED, BlendModeCompat.SRC_ATOP) }
-                    20 , 49 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.YELLOW, BlendModeCompat.SRC_ATOP) }
-                    50 , 100 ->{ BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.GREEN, BlendModeCompat.SRC_ATOP) }
-                    else -> { BlendModeColorFilterCompat.createBlendModeColorFilterCompat(Color.GREEN, BlendModeCompat.SRC_ATOP) }
-                }
                 bind.tvIndica.text = "Indica : ${model.indica}"
                 bind.tvSativa.text = "Sativa : ${model.sativa}"
             }

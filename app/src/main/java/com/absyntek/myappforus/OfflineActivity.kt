@@ -11,6 +11,9 @@ import com.absyntek.myappforus.base.BaseActivity
 import com.absyntek.myappforus.databinding.ActivityOfflineBinding
 import com.absyntek.myappforus.models.User
 import com.absyntek.myappforus.utils.firebase.UserHelper
+import com.absyntek.myappforus.utils.ui.PimpMyToast
+import com.absyntek.myappforus.utils.ui.ensureGone
+import com.absyntek.myappforus.utils.ui.ensureVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -35,10 +38,12 @@ class OfflineActivity : BaseActivity(){
         super.onStart()
         currentUser = auth.currentUser
         if (currentUser != null){
-            launchMainActivity()
+            PimpMyToast(this).timerLong {
+                launchMainActivity()
+            }
         }else{
-            bind.pgbOff.visibility = View.GONE
-            bind.layoutConnect.visibility = View.VISIBLE
+            bind.pgbOff.ensureGone()
+            bind.layoutConnect.ensureVisible()
             bind.btnConnect.setOnClickListener {
                 tryConnect(bind.edtEmail.text.toString(), bind.edtPassword.text.toString())
             }

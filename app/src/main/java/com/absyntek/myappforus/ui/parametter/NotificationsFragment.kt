@@ -1,4 +1,4 @@
-package com.absyntek.myappforus.ui.notifications
+package com.absyntek.myappforus.ui.parametter
 
 import android.content.Intent
 import android.os.Bundle

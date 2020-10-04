@@ -12,10 +12,11 @@ class Product (
     val indica :Long,
     val sativa : Long,
     val cbd: String,
-    val thc: String
+    val thc: String,
+    val content: String
 ){
     constructor() : this(
-        name = "", pictureUrl = "", quantity = 50, timeStart= Date(), indica = 50, sativa = 50 , thc = "12", cbd = "moyen"
+        name = "", pictureUrl = "", quantity = 50, timeStart= Date(), indica = 50, sativa = 50 , thc = "12", cbd = "moyen", content = ""
     )
 
     companion object{
@@ -28,6 +29,7 @@ class Product (
             val sativa = doc.getLong("sativa")?: 50
             val thc= doc.getString("thc")?: ""
             val cbd= doc.getString("cbd")?: ""
+            val content = doc.getString("desc")?: ""
 
             return if (isNull(name,quantity,timeStart)) null
             else Product(
@@ -35,7 +37,7 @@ class Product (
                 pictureUrl,
                 quantity!!,
                 timeStart!!,
-                indica, sativa, cbd, thc
+                indica, sativa, cbd, thc, content
             )
         }
     }
