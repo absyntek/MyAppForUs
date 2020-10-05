@@ -18,7 +18,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestoreException
 import java.util.*
 
-class HomeAdapterActual(options: FirestoreRecyclerOptions<Product>) : FirestoreRecyclerAdapter<Product, BaseViewHolder<FragentHomeProductItemBinding>>(options){
+class HomeAdapter(options: FirestoreRecyclerOptions<Product>, val productClick:(Product) -> Unit) : FirestoreRecyclerAdapter<Product, BaseViewHolder<FragentHomeProductItemBinding>>(options){
 
     private lateinit var context: Context
 
@@ -54,6 +54,9 @@ class HomeAdapterActual(options: FirestoreRecyclerOptions<Product>) : FirestoreR
                 bind.tvIndica.text = "Indica : ${model.indica}"
                 bind.tvSativa.text = "Sativa : ${model.sativa}"
             }
+        }
+        bind.root.setOnClickListener {
+            productClick(model)
         }
     }
 

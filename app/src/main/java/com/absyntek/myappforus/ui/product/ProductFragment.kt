@@ -26,9 +26,9 @@ class ProductFragment : BaseFragment(){
         savedInstanceState: Bundle?
     ): View? {
         bind = FragmentProductBinding.inflate(inflater, container, false)
-        Glide.with(bind.imageTop).load(product.pictureUrl).into(bind.imageTop)
+        Glide.with(bind.imageTop).load(product.pictureUrl).fitCenter().centerCrop().into(bind.imageTop)
         bind.tvTitle.text = product.name
-        bind.tvDesc.text = product.content
+        bind.tvDesc.text = product.content.replace("\\n","\n")
         return bind.root
     }
 }

@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.absyntek.myappforus.NavigatorActivity
 import com.absyntek.myappforus.api.appGlobals
 import com.absyntek.myappforus.base.BaseFragment
 import com.absyntek.myappforus.databinding.FragmentHomeBinding
 import com.absyntek.myappforus.models.Product
+import com.absyntek.myappforus.utils.NavigatorDirectory
 import com.absyntek.myappforus.utils.firebase.ProductHelper
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
@@ -17,16 +19,16 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var bind: FragmentHomeBinding
-    private lateinit var adapterActual: HomeAdapterActual
-    private lateinit var adapterNext: HomeAdapterNext
+    private lateinit var adapterActual: HomeAdapter
+    private lateinit var adapterNext: HomeAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val optionActual = FirestoreRecyclerOptions.Builder<Product>().setQuery(ProductHelper.queryActual(), Product::class.java).build()
-        adapterActual = HomeAdapterActual(optionActual)
+        adapterActual = HomeAdapter(optionActual, ::productClick)
         val optionNext = FirestoreRecyclerOptions.Builder<Product>().setQuery(ProductHelper.queryNext(), Product::class.java).build()
-        adapterNext = HomeAdapterNext(optionNext)
+        adapterNext = HomeAdapter(optionNext, ::productClick)
     }
 
     override fun onCreateView(
@@ -46,6 +48,10 @@ class HomeFragment : BaseFragment() {
         bind.rvHomeNext.adapter = adapterNext
 
         return bind.root
+    }
+
+    private fun productClick(product: Product){
+        startActivity(NavigatorActivity.newIntent(requireContext(), NavigatorDirectory.ProductFr(product)))
     }
 
     override fun onResume() {

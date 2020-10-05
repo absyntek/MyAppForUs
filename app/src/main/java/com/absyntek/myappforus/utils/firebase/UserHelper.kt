@@ -11,7 +11,7 @@ object UserHelper {
     private val db = Firebase.firestore
 
     // --- COLLECTION REFERENCE ---
-    private val usersCollection = db.collection(COLLECTION_NAME)
+    val usersCollection = db.collection(COLLECTION_NAME)
 
     // --- CREATE ---
     fun createUser(userToCreate: User) = usersCollection.document(userToCreate.uid).set(userToCreate)

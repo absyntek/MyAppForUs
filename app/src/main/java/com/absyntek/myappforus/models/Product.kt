@@ -1,9 +1,12 @@
 package com.absyntek.myappforus.models
 
+import android.os.Parcelable
 import com.absyntek.myappforus.ui.isNull
 import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 class Product (
     val name: String,
     val pictureUrl: String,
@@ -14,7 +17,7 @@ class Product (
     val cbd: String,
     val thc: String,
     val content: String
-){
+) : Parcelable{
     constructor() : this(
         name = "", pictureUrl = "", quantity = 50, timeStart= Date(), indica = 50, sativa = 50 , thc = "12", cbd = "moyen", content = ""
     )
