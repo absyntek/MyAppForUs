@@ -53,18 +53,21 @@ class OfflineActivity : BaseActivity(){
     private fun tryConnect(email:String, pass:String){
         auth.signInWithEmailAndPassword(email,pass)
             .addOnCompleteListener {
+                currentUser = auth.currentUser
                 launchMainActivity()
+            }
+            .addOnFailureListener {
+                PimpMyToast(this).orangeTopToast(it.toString())
             }
     }
 
     private fun launchMainActivity(){
-        val usr = auth.currentUser
-        if (usr != null){
-            UserHelper.getUser(usr.uid).addOnSuccessListener {doc ->
+        if (currentUser != null){
+            UserHelper.getUser(currentUser!!.uid).addOnSuccessListener {doc ->
                 val user = User.createFromDocuument(doc)
                 user?.let {userT ->
                     appGlobals().currentUser = userT
-                    appGlobals().firebaseUser = usr
+                    appGlobals().firebaseUser = currentUser
                     this.finish()
                     startActivity(Intent(this, MainActivity::class.java))
                 }

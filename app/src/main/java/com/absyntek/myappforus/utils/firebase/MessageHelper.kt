@@ -14,9 +14,10 @@ class MessageHelper(userId: String) {
 
     fun get(id: String) = chatCollection.document(id).get()
 
-    fun getQuery() = chatCollection.orderBy("createdAt", Query.Direction.DESCENDING)
+    fun getQuery() = chatCollection.orderBy("cratedAt", Query.Direction.DESCENDING)
 
     fun update(id: String, message: Message) = chatCollection.document(id).set(message)
+    fun updateText(id: String, text: String) = chatCollection.document(id).update("text", text)
 
 
     fun delete(id: String) = chatCollection.document(id).delete()

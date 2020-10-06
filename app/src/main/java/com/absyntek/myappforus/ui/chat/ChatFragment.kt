@@ -15,6 +15,7 @@ import com.absyntek.myappforus.models.User
 import com.absyntek.myappforus.utils.NavigatorDirectory
 import com.absyntek.myappforus.utils.firebase.MessageHelper
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import java.util.*
 
 class ChatFragment : BaseFragment(){
 
@@ -41,14 +42,18 @@ class ChatFragment : BaseFragment(){
         bind = FragmentChatBinding.inflate(layoutInflater,container,false)
         val option = FirestoreRecyclerOptions.Builder<Message>().setQuery(helper.getQuery(), Message::class.java).build()
         adapter = ChatAdapter(option , appGlobals().currentUser?.uid?: "")
-        bind.rvChat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+        val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        lm.stackFromEnd = false
+        lm.reverseLayout = true
+        bind.rvChat.layoutManager = lm
         bind.rvChat.adapter = adapter
 
         bind.btnSend.setOnClickListener {
             helper.create(
                 Message(
                     bind.edtText.text.toString(),
-                    appGlobals().currentUser?.uid?:""
+                    appGlobals().currentUser?.uid?:"",
+                    Date()
                 )
             )
         }
