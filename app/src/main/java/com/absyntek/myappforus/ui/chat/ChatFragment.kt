@@ -16,6 +16,7 @@ import com.absyntek.myappforus.models.Message
 import com.absyntek.myappforus.models.User
 import com.absyntek.myappforus.utils.NavigatorDirectory
 import com.absyntek.myappforus.utils.firebase.MessageHelper
+import com.absyntek.myappforus.utils.firebase.MessageRefresh
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import timber.log.Timber
 import java.util.*
@@ -52,6 +53,9 @@ class ChatFragment : BaseFragment(){
         bind.rvChat.layoutManager = lm
         bind.rvChat.adapter = adapter
 
+        /*ToDo*/
+        //MessageRefresh.getUserRefresh(user.uid)
+
         bind.edtText.doAfterTextChanged {
             bind.btnSend.isEnabled = !it.isNullOrBlank()
         }
@@ -65,11 +69,16 @@ class ChatFragment : BaseFragment(){
             ).addOnSuccessListener {
                 bind.rvChat.smoothScrollToPosition(0)
                 bind.edtText.text = Editable.Factory.getInstance().newEditable("")
+                needRefresh()
             }.addOnFailureListener {
                 Timber.e(it)
             }
         }
         return bind.root
+    }
+
+    private fun needRefresh(){
+
     }
 
     override fun onResume() {

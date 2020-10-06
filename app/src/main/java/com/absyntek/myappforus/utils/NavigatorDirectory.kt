@@ -24,7 +24,8 @@ sealed class NavigatorDirectory : Serializable{
     }
 
 
-    class Chat(private val user: User): NavigatorDirectory(){
+    @Parcelize
+    class Chat(private val user: User): NavigatorDirectory(), Parcelable {
         override fun toFragment() = ChatFragment.create(user)
     }
 }

@@ -12,6 +12,9 @@ import com.absyntek.myappforus.api.appGlobals
 import com.absyntek.myappforus.base.BaseActivity
 import com.absyntek.myappforus.databinding.ActivityMainAdminBinding
 import com.absyntek.myappforus.databinding.ActivityMainBinding
+import com.absyntek.myappforus.utils.firebase.MessageHelper
+import com.absyntek.myappforus.utils.firebase.MessageRefresh
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -31,5 +34,19 @@ class MainActivity : BaseActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
 
         navView.setupWithNavController(navController)
+
+        MessageRefresh.messageCollection.addSnapshotListener { value, e ->
+            if (e!=null) {
+                Timber.e(e)
+                return@addSnapshotListener
+            }
+            value?.let {
+                val refresh = it.getLong("count")?: 0
+                if (refresh > 0){
+                    bind
+                }
+            }
+
+        }
     }
 }
