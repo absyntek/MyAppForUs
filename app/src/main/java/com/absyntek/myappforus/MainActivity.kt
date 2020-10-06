@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bind = if (appGlobals().isAdmin){
+        bind = if (appGlobals().admin){
             ActivityMainAdminBinding.inflate(layoutInflater)
         }else{
             ActivityMainBinding.inflate(layoutInflater)

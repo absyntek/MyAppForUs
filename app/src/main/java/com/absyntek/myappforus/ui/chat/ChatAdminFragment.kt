@@ -39,7 +39,7 @@ class ChatAdminFragment :BaseFragment(){
     }
 
     private fun onItemclick(user: User){
-        startActivity(NavigatorActivity.newIntent(requireContext(), NavigatorDirectory.Chat(user.uid)))
+        startActivity(NavigatorActivity.newIntent(requireContext(), NavigatorDirectory.Chat(user)))
     }
 
     override fun onResume() {

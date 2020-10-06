@@ -40,7 +40,7 @@ class NotificationsFragment : BaseFragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        if (currentUser.isAdmin){
+        if (currentUser.admin){
             binding.btnCreateUser.ensureVisible()
             binding.btnCreateUser.setOnClickListener {
                 startActivity(NavigatorActivity.newIntent(requireContext(), NavigatorDirectory.CreateUser))

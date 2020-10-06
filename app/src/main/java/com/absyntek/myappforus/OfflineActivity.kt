@@ -2,8 +2,6 @@ package com.absyntek.myappforus
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import com.absyntek.myappforus.api.ServiceLocator
 import com.absyntek.myappforus.api.UseFullRes
 import com.absyntek.myappforus.api.appGlobals
@@ -68,13 +66,14 @@ class OfflineActivity : BaseActivity(){
                 user?.let {userT ->
                     appGlobals().currentUser = userT
                     appGlobals().firebaseUser = currentUser
-                    this.finish()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    finishIt()
                 }
             }
-
-        }else {
-            Toast.makeText(this, "non authorized", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun finishIt(){
+        this.finish()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

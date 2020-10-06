@@ -21,7 +21,7 @@ object ServiceLocator {
 interface Provider {
     var firebaseUser: FirebaseUser?
     var currentUser: User?
-    var isAdmin: Boolean
+    var admin: Boolean
     var currentUid: String
 }
 
@@ -36,15 +36,15 @@ class UseFullRes : Provider{
     override var currentUser: User?
         get() = _currentUser
         set(value) { if (_currentUser != value)
-            isAdmin = value?.isAdmin?: false
+            admin = value?.admin?: false
             currentUid = value?.uid?: ""
             this._currentUser = value
         }
 
-    private var _isAdmin = false
-    override var isAdmin: Boolean
-        get() = _isAdmin
-        set(value) {if (_isAdmin != value) _isAdmin = value }
+    private var _admin = false
+    override var admin: Boolean
+        get() = _admin
+        set(value) {if (_admin != value) _admin = value }
 
     private var _currentUid = ""
     override var currentUid: String
