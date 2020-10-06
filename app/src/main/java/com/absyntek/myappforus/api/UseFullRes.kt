@@ -22,6 +22,7 @@ interface Provider {
     var firebaseUser: FirebaseUser?
     var currentUser: User?
     var isAdmin: Boolean
+    var currentUid: String
 }
 
 class UseFullRes : Provider{
@@ -36,6 +37,7 @@ class UseFullRes : Provider{
         get() = _currentUser
         set(value) { if (_currentUser != value)
             isAdmin = value?.isAdmin?: false
+            currentUid = value?.uid?: ""
             this._currentUser = value
         }
 
@@ -43,4 +45,9 @@ class UseFullRes : Provider{
     override var isAdmin: Boolean
         get() = _isAdmin
         set(value) {if (_isAdmin != value) _isAdmin = value }
+
+    private var _currentUid = ""
+    override var currentUid: String
+        get() = _currentUid
+        set(value) { if (_currentUid != value) _currentUid = value}
 }

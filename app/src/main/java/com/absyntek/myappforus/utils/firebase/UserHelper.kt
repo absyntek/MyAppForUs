@@ -17,8 +17,9 @@ object UserHelper {
     fun createUser(userToCreate: User) = usersCollection.document(userToCreate.uid).set(userToCreate)
 
     // --- GET ---
-    val users: Query
-        get() = usersCollection.orderBy("username", Query.Direction.ASCENDING)
+    val users: Query = usersCollection.orderBy("username", Query.Direction.ASCENDING)
+
+    fun allUsers(uid: String): Query = usersCollection.whereNotEqualTo("uid", uid)
 
     fun getUsersSearch(search: String): Query {
         return usersCollection.whereGreaterThanOrEqualTo("username", search)

@@ -1,35 +1,67 @@
 package com.absyntek.myappforus.ui.chat
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewbinding.ViewBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.absyntek.myappforus.NavigatorActivity
 import com.absyntek.myappforus.api.appGlobals
 import com.absyntek.myappforus.base.BaseFragment
-import com.absyntek.myappforus.databinding.FragmentChatAdminBinding
-import com.absyntek.myappforus.databinding.FragmentChatUserBinding
+import com.absyntek.myappforus.databinding.FragmentChatBinding
+import com.absyntek.myappforus.models.Message
+import com.absyntek.myappforus.models.User
+import com.absyntek.myappforus.utils.NavigatorDirectory
+import com.absyntek.myappforus.utils.firebase.MessageHelper
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class ChatFragment : BaseFragment(){
 
+    private lateinit var uid: String
     companion object{
         fun create() = ChatFragment()
+        fun create(uid:String)= ChatFragment().apply {
+            this.uid = uid
+        }
     }
 
-    private lateinit var bind: ViewBinding
+    private lateinit var bind: FragmentChatBinding
+    private lateinit var adapter: ChatAdapter
+    private lateinit var helper: MessageHelper
     private var isAdmin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isAdmin = appGlobals().isAdmin
+        helper = MessageHelper(uid)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        bind = if (isAdmin){
-            FragmentChatAdminBinding.inflate(layoutInflater, container, false)
-        }else {
-            FragmentChatUserBinding.inflate(layoutInflater,container,false)
+        bind = FragmentChatBinding.inflate(layoutInflater,container,false)
+        val option = FirestoreRecyclerOptions.Builder<Message>().setQuery(helper.getQuery(), Message::class.java).build()
+        adapter = ChatAdapter(option , appGlobals().currentUser?.uid?: "")
+        bind.rvChat.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
+        bind.rvChat.adapter = adapter
+
+        bind.btnSend.setOnClickListener {
+            helper.create(
+                Message(
+                    bind.edtText.text.toString(),
+                    appGlobals().currentUser?.uid?:""
+                )
+            )
         }
         return bind.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 }

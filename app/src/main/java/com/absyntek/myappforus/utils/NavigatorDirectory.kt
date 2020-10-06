@@ -18,11 +18,12 @@ sealed class NavigatorDirectory : Serializable{
     }
 
     @Parcelize
-    class ProductFr(val product: Product) : NavigatorDirectory(), Parcelable {
+    class ProductFr(private val product: Product) : NavigatorDirectory(), Parcelable {
         override fun toFragment() = ProductFragment.create(product)
     }
 
-    object Chat: NavigatorDirectory(){
-        override fun toFragment() = ChatFragment.create()
+
+    class Chat(private val uid: String ): NavigatorDirectory(){
+        override fun toFragment() = ChatFragment.create(uid)
     }
 }

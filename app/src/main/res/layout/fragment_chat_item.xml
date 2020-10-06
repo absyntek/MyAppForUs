@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:background="@drawable/chat_bubble_sender">
+        <TextView
+            android:id="@+id/tv_sender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:text="moisjdfoij udhfsoiudh fiuqhsdfpiuqshd fpqiush fp dsgfq dsqf qsd fqsdf qds fqsdfqsdf qds qsd"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:background="@drawable/chat_bubble_receiver">
+        <TextView
+            android:id="@+id/tv_receiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:textSize="18sp"
+            android:text="moisjdfoij udhfsoiudh fiuqhsdfpiuqshd fpqiush fp"/>
+
+    </LinearLayout>
+</LinearLayout>
+</layout>

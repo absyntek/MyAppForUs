@@ -11,6 +11,7 @@ class User (
     val isAdmin: Boolean,
     val dateCreated: Date
 ){
+    constructor(): this("","","",false,Date())
     companion object{
         fun createFromDocuument(doc:DocumentSnapshot): User?{
             val uid = doc.getString("uid")

@@ -18,13 +18,20 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.absyntek.myappforus.ui.chat.ChatFragment"
-        android:label="@string/title_chat" />
-
-    <fragment
         android:id="@+id/navigation_setting"
         android:name="com.absyntek.myappforus.ui.parametter.NotificationsFragment"
         android:label="@string/title_setting"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.absyntek.myappforus.ui.chat.ChatFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_chat" />
+
+    <fragment
+        android:id="@+id/navigation_chat_admin"
+        android:name="com.absyntek.myappforus.ui.chat.ChatAdminFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_chat_admin" />
 </navigation>
